@@ -1,0 +1,8 @@
+	<details>
+		<summary>Latest Posts</summary>
+		<ul id="latest-posts">
+			{{ range first 7 (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+			<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+			{{ end }}
+		</ul>	
+	</details>

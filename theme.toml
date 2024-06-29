@@ -1,0 +1,12 @@
+name = "SimpleCSS"
+license = "MIT"
+licenselink = "https://github.com/kevquirk/simple.css/blob/main/LICENSE"
+description = "Theme built off of kevquirk's simplecss."
+homepage = "https://github.com/kevquirk/simple.css"
+tags = ["blog", "simplecss"]
+features = ["blog", "darkmode"]
+min_version = "0.20"
+
+[author]
+  name = "Fred Posner"
+  homepage = "https://github.com/fredposner"
