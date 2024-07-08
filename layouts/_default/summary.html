@@ -1,27 +1,27 @@
 {{- if (eq .Type "posts") }}
-<section id="{{ .Permalink }}">
-	<header>
-		<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-	</header>
-	<h6>
-			Posted <time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006-06-01 at 15:04" }}</time>
-			{{ if .Params.tags}} in: 
-			{{ range .Params.tags }}
-			<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> 
-			{{ end }}
-			{{ end }}
-	</h6>
-	<p>
+<div class="spacer"></div>
+<h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }} <i class="bi bi-arrow-right-short"></i></a></h3>
+<p class="meta">Posted <time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006-01-06 at 15:04" }}</time>. ~{{ .ReadingTime }}min read.</p>
+<p>
 	{{ if .Description }}
 		{{ .Description}}
 	{{ else }}
 		{{ .Summary }}
 	{{ end }}
-		{{ if .Truncated }}
-			<a href="{{ .Permalink }}">Read more...</a>
+</p>
+<p class="meta">
+		{{ if .Params.tags}} Tagged: 
+		{{ range .Params.tags }}
+		<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> 
 		{{ end }}
-	</p>
-</section>
+		{{ end }}
+</p>
+<!--
+{{ if .Truncated }}
+<a class="button" href="{{ .Permalink }}">Read more <i class="bi bi-arrow-right-short"></i></a>
+{{ end }}
+-->
+<div class="spacer"></div>
 {{- else }}
 	<a class="button" href="{{ .Permalink }}">{{ .Title }}</a>
 {{- end }}

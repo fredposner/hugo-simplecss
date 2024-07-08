@@ -5,40 +5,38 @@
 			{{ partial "mermaid.html" }}
 			{{ end }}
 			<header>
-				<h2>{{ .Title }}</h2>
+				<h2 class="post-title">{{ .Title }}</h2>
+				<p class="meta">
+					Posted <time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006-01-06 at 15:04" }}</time>. ~{{ .ReadingTime }}min read.
+				</p>
 			</header>
 			<div>
 				{{ .Content }}
-				<p>
-					<small>
-						Posted on <time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006-06-01 at 15:04" }}</time>
-					</small>
-				</p>
 			</div>
-			{{ with .Params.tags }}
-			<details>
-				<summary>Tagged in...</summary>
-				<ul id="tags">
-					{{ range . }}
-					<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-					{{ end }}
-				</ul>	
-			</details>
-			{{ end }}
-			{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-			{{- if and (gt (len $pages) 1) (in $pages . ) }}
-			<p>
-				Next up...<br/>
-				{{- with $pages.Next . }}
-				<a class="button" href="{{ .Permalink }}">« {{ i18n "prev_page" }}{{- .Name -}}</a>
-				{{- end }}
-				{{- with $pages.Prev . }}
-				<a class="button" href="{{ .Permalink }}">{{- .Name -}}{{ i18n "next_page" }} »</a>
-				{{- end }}
-				</nav>
-			</p>
-			{{- end }}
 		</section>
 	</main>
+	{{ with .Params.tags }}
+	<details>
+		<summary>Tagged in...</summary>
+		<ul id="tags">
+			{{ range . }}
+			<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+			{{ end }}
+		</ul>	
+	</details>
+	{{ end }}
+	{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+	{{- if and (gt (len $pages) 1) (in $pages . ) }}
+	<p>
+		Next up...<br/>
+		{{- with $pages.Next . }}
+		<a class="button big" href="{{ .Permalink }}"><i class="bi bi-arrow-left-short"></i> {{ i18n "prev_page" }}{{- .Name -}}</a>
+		{{- end }}
+		{{- with $pages.Prev . }}
+		<a class="button big" href="{{ .Permalink }}">{{- .Name -}}{{ i18n "next_page" }} <i class="bi bi-arrow-right-short"></i></a>
+		{{- end }}
+		</nav>
+	</p>
+	{{- end }}
 {{ partial "sidebar.html" . }}
 {{ end }}

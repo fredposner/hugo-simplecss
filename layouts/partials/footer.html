@@ -1,4 +1,10 @@
 <footer>
 	<p>&copy; {{ now.Year }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>. All Rights Reserved. Site based on <a href="https://simplecss.org">SimpleCSS</a></p>
-	{{- with site.Params.contacturl }}<a class="button" href="{{ . }}">Contact</a>{{ end }}
+	<nav>
+		<ul>
+			<li><a href="#top"><i class="bi bi-arrow-bar-up"></i> Top</a></li>
+			<li><a href="/"><i class="bi bi-house-heart-fill"></i> Home</a></li>
+{{- with site.Params.contacturl }}			<li><a href="{{ . }}"><i class="bi bi-person-rolodex"></i> Contact</a></li>{{ end }}	
+		</ul>
+	</nav>
 </footer>

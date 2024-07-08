@@ -1,5 +1,17 @@
 {{ define "main" }}
 	<main>
+		{{- if .IsHome }}
+		<div class="notice">
+			{{ with site.Params.home.header }}<h3>{{ site.Params.home.header }}</h3>{{ end }}
+			{{- if site.Params.home.welcome }}
+			<p>{{ site.Params.home.welcome }}</p>
+			{{- else }}
+			<p>Welcome to the site!</p>
+			{{- end }}
+			{{ with site.Params.home.contacturl }}<p><a href="{{ site.Params.home.contacturl }}" class="button"><i class="bi bi-telephone-forward"> </i>Contact</i></a></p>{{ end }}
+		</div>
+		<div class="spacer"></div>
+		{{- end }}
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
 		{{ range $paginator.Pages }}
 			{{ .Render "summary" }}
