@@ -1,0 +1,5 @@
+<!-- image -->
+<div class="center">
+	<img class="rounded" src="{{ .Get "src" }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" }}{{ end }}"{{ end }} />
+</div>
+<!-- endimage -->

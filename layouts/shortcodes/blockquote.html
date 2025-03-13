@@ -1,0 +1,11 @@
+<!-- start blockquote -->
+<section>
+	<blockquote>
+		<h2><i class="bi bi-quote"></i></h2>
+		<p class="bigquote">{{ .Get "quote" | safeHTML }}</p>
+{{ if or (or (.Get "cite") (.Get "caption")) (.Get "attr") }}
+		<cite>{{ .Get "caption" }}{{ .Get "attr" }}{{ .Get "cite" }}</cite>
+{{ end }}
+	</blockquote>
+</section>
+<!-- end blockquote -->
